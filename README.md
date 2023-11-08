@@ -40,5 +40,8 @@ ros2 run First_Publisher_Subscriber talker
 ```
 Open another terminal 2
 ```
+. install/setup.bash
+```
+```
 ros2 run First_Publisher_Subscriber listener
 ```
