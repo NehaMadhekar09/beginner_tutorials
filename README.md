@@ -33,10 +33,11 @@ cd ros2_ws
 . install/setup.bash
 ```
 3. To run talker and listener nodes
+   
 In terminal 1 
 ```
 ros2 run First_Publisher_Subscriber talker
-
+```
 Open another terminal 2
 ```
 ros2 run First_Publisher_Subscriber listener
