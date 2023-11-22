@@ -70,3 +70,16 @@ In terminal 2
 ros2 service call /custom_service beginner_tutorials/srv/ModifyService "{request_message: New Message}"
 
 ```
+
+## Results with different log messages:
+
+1. Frequency=-5
+
+![Fatal Log](results/Fatal.png)
+
+2. Frequency=0
+
+3. Frequency=101
+
+4. Frequency=1
+
