@@ -1,7 +1,7 @@
 # beginner_tutorials
 
 ## Overview
-This repository contains beginner tutorials in C++ for a publisher and subscriber node in ROS2 humble for custom string message
+This repository contains beginner tutorials in C++ for a publisher and subscriber node in ROS2 humble for custom string message. It has a launch file that launches publisher and subscriber nodes. It also has a service in talker to modify the string message.
 
 ## Dependencies
 * ROS 2 Humble
@@ -36,12 +36,29 @@ cd ros2_ws
    
 In terminal 1 
 ```
-ros2 run First_Publisher_Subscriber talker
+ros2 run beginner_tutorials talker
 ```
 Open another terminal 2
 ```
 . install/setup.bash
 ```
 ```
-ros2 run First_Publisher_Subscriber listener
+ros2 run beginner_tutorials listener
+```
+4. To run talker and listener nodes through launch file
+
+```
+ros2 launch beginner_tutorials my_launch.py frequency:=5.0
+```
+5. To call ros service with modified request message
+
+In terminal 1
+```
+ros2 run beginner_tutorials talker
+```
+
+In terminal 2
+```
+ros2 service call /custom_service beginner_tutorials/srv/ModifyService "{request_message: New Message}"
+
 ```
