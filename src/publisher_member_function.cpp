@@ -92,7 +92,7 @@ class MinimalPublisher : public rclcpp::Node {
       std::shared_ptr<beginner_tutorials::srv::ModifyService::Response>
           response) {
     response->response_message =
-        request->request_message + "This is modified service!!";
+        request->request_message + " This is modified message by service!!";
     RCLCPP_INFO_STREAM(rclcpp::get_logger("minimal_publisher"),
                        "Request message: " << request->request_message);
     RCLCPP_INFO_STREAM(rclcpp::get_logger("minimal_publisher"),
