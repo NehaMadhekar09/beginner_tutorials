@@ -5,7 +5,7 @@
 <package format="3">
   <name>beginner_tutorials</name>
   <version>0.0.0</version>
-  <description>This package creates a custom Service</description>
+  <description>This package creates a custom Service for talker node and has launch file</description>
   <maintainer email="mneha1997@gmail.com">Neha Nitin Madhekar</maintainer>
   <license>Apache License 2.0</license>
 

@@ -1,16 +1,15 @@
-// Copyright 2016 Open Source Robotics Foundation, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+ * @file publisher_member_function.cpp
+ * @brief This file contains the implementation of the MinimalPublisher class that includes custom service
+ * @author Neha Nitin Madhekar
+ * @date 2023
+ * @copyright Open Source Robotics Foundation, Inc.
+ * @license Apache License, Version 2.0
+ *    (you may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0)
+ *
+ * This example creates a subclass of Node and uses std::bind() to register a member function as a
+ * callback from the timer.
+ */
 
 #include <beginner_tutorials/srv/modify_service.hpp>
 #include <chrono>
@@ -25,11 +24,15 @@
 
 using namespace std::chrono_literals;
 
-/* This example creates a subclass of Node and uses std::bind() to register a
- * member function as a callback from the timer. */
-
+/**
+ * @class MinimalPublisher
+ * @brief This class represents a minimal ROS2 publisher. It also has service.
+ */
 class MinimalPublisher : public rclcpp::Node {
  public:
+ /**
+   * @brief Constructor for MinimalPublisher.
+  */
   MinimalPublisher() : Node("minimal_publisher"), count_(0) {
     // Parameter for initializig publisher frequency
     auto pub_frequency_info = rcl_interfaces::msg::ParameterDescriptor();
@@ -75,6 +78,11 @@ class MinimalPublisher : public rclcpp::Node {
         "custom_service", serviceCallbackPtr);
   }
 
+  /**
+   * @brief Callback function for modifying messages.
+   * @param request The request message.
+   * @param response The response message.
+   */
   void modify_message(
       const std::shared_ptr<beginner_tutorials::srv::ModifyService::Request>
           request,
@@ -90,6 +98,9 @@ class MinimalPublisher : public rclcpp::Node {
 
 
  private:
+  /**
+   * @brief Timer callback function.
+   */
   void timer_callback() {
     auto message = std_msgs::msg::String();
     message.data = "Welcome to ENPM808X ! " + std::to_string(count_++);
@@ -103,6 +114,12 @@ class MinimalPublisher : public rclcpp::Node {
   size_t count_;
 };
 
+/**
+ * @brief Main function for the ROS2 node.
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line arguments.
+ * @return Return code.
+ */
 int main(int argc, char* argv[]) {
   rclcpp::init(argc, argv);
   rclcpp::spin(std::make_shared<MinimalPublisher>());
