@@ -46,7 +46,9 @@ Open another terminal 2
 ros2 run beginner_tutorials listener
 ```
 4. To run talker and listener nodes through launch file
-
+```
+. install/setup.bash
+```
 ```
 ros2 launch beginner_tutorials my_launch.py frequency:=5.0
 ```
@@ -54,10 +56,16 @@ ros2 launch beginner_tutorials my_launch.py frequency:=5.0
 
 In terminal 1
 ```
+. install/setup.bash
+```
+```
 ros2 run beginner_tutorials talker
 ```
 
 In terminal 2
+```
+. install/setup.bash
+```
 ```
 ros2 service call /custom_service beginner_tutorials/srv/ModifyService "{request_message: New Message}"
 
