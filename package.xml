@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
-<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<?xml-model
+   href="http://download.ros.org/schema/package_format3.xsd"
+   schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>First_Publisher_Subscriber</name>
+  <name>beginner_tutorials</name>
   <version>0.0.0</version>
-  <description>TODO: Simple publisher subscriber</description>
-  <maintainer email="mneha1997@gmail.com">neha</maintainer>
+  <description>This package creates a custom Service</description>
+  <maintainer email="mneha1997@gmail.com">Neha Nitin Madhekar</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
   <depend>rclcpp</depend>
   <depend>std_msgs</depend>
-
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
-  <export>
-    <build_type>ament_cmake</build_type>
-  </export>
+ <export>
+   <build_type>ament_cmake</build_type>
+ </export>
 </package>
