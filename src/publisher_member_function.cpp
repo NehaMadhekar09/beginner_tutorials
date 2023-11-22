@@ -1,14 +1,16 @@
 /*
  * @file publisher_member_function.cpp
- * @brief This file contains the implementation of the MinimalPublisher class that includes custom service
+ * @brief This file contains the implementation of the MinimalPublisher class
+ * that includes custom service
  * @author Neha Nitin Madhekar
  * @date 2023
  * @copyright Open Source Robotics Foundation, Inc.
  * @license Apache License, Version 2.0
- *    (you may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0)
+ *    (you may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0)
  *
- * This example creates a subclass of Node and uses std::bind() to register a member function as a
- * callback from the timer.
+ * This example creates a subclass of Node and uses std::bind() to register a
+ * member function as a callback from the timer.
  */
 
 #include <beginner_tutorials/srv/modify_service.hpp>
@@ -30,9 +32,9 @@ using namespace std::chrono_literals;
  */
 class MinimalPublisher : public rclcpp::Node {
  public:
- /**
+  /**
    * @brief Constructor for MinimalPublisher.
-  */
+   */
   MinimalPublisher() : Node("minimal_publisher"), count_(0) {
     // Parameter for initializig publisher frequency
     auto pub_frequency_info = rcl_interfaces::msg::ParameterDescriptor();
@@ -54,8 +56,9 @@ class MinimalPublisher : public rclcpp::Node {
       RCLCPP_WARN_STREAM_ONCE(rclcpp::get_logger("minimal_publisher"),
                               "Publisher Frequency greater than hundread");
     } else {
-      RCLCPP_DEBUG_STREAM(rclcpp::get_logger("minimal_publisher"),
-                          "Publisher Frequency parameter is " << pub_frequency << " Hz");
+      RCLCPP_DEBUG_STREAM(
+          rclcpp::get_logger("minimal_publisher"),
+          "Publisher Frequency parameter is " << pub_frequency << " Hz");
 
       RCLCPP_INFO_STREAM(rclcpp::get_logger("minimal_publisher"),
                          "Publishing at " << pub_frequency << " Hz");
@@ -95,7 +98,6 @@ class MinimalPublisher : public rclcpp::Node {
     RCLCPP_INFO_STREAM(rclcpp::get_logger("minimal_publisher"),
                        "Response message: " << response->response_message);
   }
-
 
  private:
   /**

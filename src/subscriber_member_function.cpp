@@ -5,7 +5,8 @@
  * @date 2023
  * @copyright Open Source Robotics Foundation, Inc.
  * @license Apache License, Version 2.0
- *    (you may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0)
+ *    (you may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0)
  *
  */
 
@@ -23,16 +24,16 @@ using std::placeholders::_1;
  */
 class MinimalSubscriber : public rclcpp::Node {
  public:
- /**
+  /**
    * @brief Constructor for MinimalSubscriber.
-  */
+   */
   MinimalSubscriber() : Node("minimal_subscriber") {
     subscription_ = this->create_subscription<std_msgs::msg::String>(
         "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
   }
 
  private:
- /**
+  /**
    * @brief Callback function for handling messages from the subscribed topic.
    * @param msg The received message.
    */
