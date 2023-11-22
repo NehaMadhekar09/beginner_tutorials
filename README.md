@@ -79,7 +79,13 @@ ros2 service call /custom_service beginner_tutorials/srv/ModifyService "{request
 
 2. Frequency=0
 
+![Error Log](results/Error.png)
+
 3. Frequency=101
 
+![Warn Log](results/Warn.png)
+
 4. Frequency=1
+
+![Info and Debug Log](results/Debug_Info.png)
 
