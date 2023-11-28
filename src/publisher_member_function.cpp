@@ -118,6 +118,14 @@ class MinimalPublisher : public rclcpp::Node {
     make_transforms();
   }
 
+  /**
+ * @brief Creates and broadcasts a static transform from "world" to "talk".
+ *
+ * Initializes a StaticTransformBroadcaster, sets up a transform, and broadcasts it.
+ *
+ * @note Assumes the presence of a clock, a TF2 ROS StaticTransformBroadcaster,
+ * and geometry_msgs::msg::TransformStamped.
+ */
   void make_transforms()
   {
     tf_static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);

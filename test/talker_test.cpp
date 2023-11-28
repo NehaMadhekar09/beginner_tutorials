@@ -1,9 +1,28 @@
+/*
+ * @file talker_test.cpp
+ * @brief This file contains the tests for talker node
+ * @author Neha Nitin Madhekar
+ * @date 2023
+ * @copyright Open Source Robotics Foundation, Inc.
+ * @license Apache License, Version 2.0
+ *    (you may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0)
+ *
+ */
 #include <gtest/gtest.h>
 #include <rclcpp/rclcpp.hpp>
 #include <stdlib.h>
 
 #include <std_msgs/msg/string.hpp>
 
+/**
+ * @class TaskPlanningFixture
+ * @brief Fixture for testing task talker node.
+ *
+ * This fixture sets up and tears down a ROS2 node for testing talker.
+ * It provides methods for starting and stopping ROS2 executables, along with a test case
+ * for checking if a talker publishes the expected message.
+ */
 class TaskPlanningFixture : public testing::Test {
 public:
   TaskPlanningFixture() : node_(std::make_shared<rclcpp::Node>("basic_test")) {
@@ -77,7 +96,9 @@ protected:
   }
 };
 
-
+/**
+ * @brief Test case to check if the talker publishes the expected message.
+ */
 TEST_F(TaskPlanningFixture, testTalkerPublishesMessage) {
   const std::string expected_message =
       "Welcome to ENPM808X ! " ;
@@ -89,7 +110,9 @@ TEST_F(TaskPlanningFixture, testTalkerPublishesMessage) {
       });
 }
 
-
+/**
+ * @brief Main function to run all tests.
+ */
 int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
   ::testing::InitGoogleTest(&argc, argv);
