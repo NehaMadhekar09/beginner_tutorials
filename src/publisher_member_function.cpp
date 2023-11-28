@@ -12,24 +12,23 @@
  * This example creates a subclass of Node and uses std::bind() to register a
  * member function as a callback from the timer.
  */
-#include <memory>
-#include "geometry_msgs/msg/transform_stamped.hpp"
 
-#include <beginner_tutorials/srv/modify_service.hpp>
 #include <chrono>
-#include <functional>
+#include <string>
 
+#include <functional>
+#include <memory>
 #include <rclcpp/executors.hpp>
 #include <rclcpp/logger.hpp>
 #include <rclcpp/logging.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
-#include <string>
 
+#include <beginner_tutorials/srv/modify_service.hpp>
+#include "geometry_msgs/msg/transform_stamped.hpp"
 #include "tf2/LinearMath/Quaternion.h"
 #include "tf2_ros/static_transform_broadcaster.h"
 
-using namespace std::chrono_literals;
 
 /**
  * @class MinimalPublisher
@@ -84,7 +83,6 @@ class MinimalPublisher : public rclcpp::Node {
 
     service_ = create_service<beginner_tutorials::srv::ModifyService>(
         "custom_service", serviceCallbackPtr);
-
   }
 
   /**
@@ -105,7 +103,6 @@ class MinimalPublisher : public rclcpp::Node {
                        "Response message: " << response->response_message);
   }
 
-
  private:
   /**
    * @brief Timer callback function.
@@ -119,16 +116,17 @@ class MinimalPublisher : public rclcpp::Node {
   }
 
   /**
- * @brief Creates and broadcasts a static transform from "world" to "talk".
- *
- * Initializes a StaticTransformBroadcaster, sets up a transform, and broadcasts it.
- *
- * @note Assumes the presence of a clock, a TF2 ROS StaticTransformBroadcaster,
- * and geometry_msgs::msg::TransformStamped.
- */
-  void make_transforms()
-  {
-    tf_static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
+   * @brief Creates and broadcasts a static transform from "world" to "talk".
+   *
+   * Initializes a StaticTransformBroadcaster, sets up a transform, and
+   * broadcasts it.
+   *
+   * @note Assumes the presence of a clock, a TF2 ROS
+   * StaticTransformBroadcaster, and geometry_msgs::msg::TransformStamped.
+   */
+  void make_transforms() {
+    tf_static_broadcaster_ =
+        std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
     geometry_msgs::msg::TransformStamped t;
 
     t.header.stamp = this->get_clock()->now();
@@ -138,7 +136,7 @@ class MinimalPublisher : public rclcpp::Node {
     t.transform.translation.x = 1.0;
     t.transform.translation.y = 0.5;
     t.transform.translation.z = 0.0;
-    
+
     t.transform.rotation.x = 0.0;
     t.transform.rotation.y = 0.0;
     t.transform.rotation.z = 0.0;

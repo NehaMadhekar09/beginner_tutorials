@@ -10,9 +10,9 @@
  *
  */
 #include <gtest/gtest.h>
-#include <rclcpp/rclcpp.hpp>
 #include <stdlib.h>
 
+#include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
 
 /**
@@ -20,11 +20,11 @@
  * @brief Fixture for testing task talker node.
  *
  * This fixture sets up and tears down a ROS2 node for testing talker.
- * It provides methods for starting and stopping ROS2 executables, along with a test case
- * for checking if a talker publishes the expected message.
+ * It provides methods for starting and stopping ROS2 executables, along with a
+ * test case for checking if a talker publishes the expected message.
  */
 class TaskPlanningFixture : public testing::Test {
-public:
+ public:
   TaskPlanningFixture() : node_(std::make_shared<rclcpp::Node>("basic_test")) {
     RCLCPP_INFO_STREAM(node_->get_logger(), "DONE WITH CONSTRUCTOR!!");
   }
@@ -54,7 +54,7 @@ public:
     std::cout << "DONE WITH TEARDOWN" << std::endl;
   }
 
-protected:
+ protected:
   rclcpp::Node::SharedPtr node_;
   std::stringstream cmd_ss, cmdInfo_ss, killCmd_ss;
 
@@ -66,8 +66,8 @@ protected:
     cmdInfo_ss << "ros2 node info "
                << "/" << node_name << " > /dev/null 2> /dev/null";
     char execName[16];
-    snprintf(execName, 16, "%s",
-             exec_name); // pkill uses exec name <= 15 char only
+    snprintf(execName, sizeof(execName), "%s",
+             exec_name);  // pkill uses exec name <= 15 char only
     killCmd_ss << "pkill --signal SIGINT " << execName
                << " > /dev/null 2> /dev/null";
 
@@ -76,8 +76,7 @@ protected:
 
     // Start a ros2 node and wait for it to get ready:
     int retVal = system(cmd_ss.str().c_str());
-    if (retVal != 0)
-      return false;
+    if (retVal != 0) return false;
 
     retVal = -1;
     while (retVal != 0) {
@@ -88,8 +87,7 @@ protected:
   }
 
   bool StopROSExec() {
-    if (killCmd_ss.str().empty())
-      return true;
+    if (killCmd_ss.str().empty()) return true;
 
     int retVal = system(killCmd_ss.str().c_str());
     return retVal == 0;
@@ -100,8 +98,7 @@ protected:
  * @brief Test case to check if the talker publishes the expected message.
  */
 TEST_F(TaskPlanningFixture, testTalkerPublishesMessage) {
-  const std::string expected_message =
-      "Welcome to ENPM808X ! " ;
+  const std::string expected_message = "Welcome to ENPM808X ! ";
 
   auto subscriber = node_->create_subscription<std_msgs::msg::String>(
       "topic", 10,
